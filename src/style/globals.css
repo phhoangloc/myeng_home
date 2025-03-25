@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+    --color-title-red: #FF6F61;
+
+    --container-xs: 375px;
+    --container-sm: 575px;
+    --container-md: 768px;
+    --container-lg: 992px;
+    --container-xl: 1200px;
+    --container-2xl: 1600px;
+
+    --vw-12: calc(100vw - 3rem);
+    --vw-72: calc(100vw - 18rem);
+
+    --vh-12: calc(100vh - 3rem)
+}
+
+.scrbar-none::-webkit-scrollbar {
+    display: none;
+}
