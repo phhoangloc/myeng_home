@@ -19,29 +19,12 @@ type chooseType = {
     answer: string,
 }
 export const ItemArchive = ({ item }: Props) => {
-    const [_choose, set_choose] = useState<chooseType[]>([])
-
-
-    useEffect(() => {
-        if (item && item.choose) {
-            set_choose(JSON.parse(item.choose))
-        }
-    }, [item])
 
     const toPage = useRouter()
 
     return (
-        <div className="w-full min-h-24 my-4 p-4 shadow-md rounded-xl  font-bold cursor-pointer" onClick={() => toPage.push("/" + item.archive + "/" + item.id)}>
-            <div dangerouslySetInnerHTML={{ __html: item.question }} className='text-title-red'></div>
-            {_choose ?
-                _choose.map((_ch, index) => <div key={index} className='font-normal'>
-                    <div>{_ch.question}</div>
-                    <div className='flex gap-2'>A. {_ch.answerA}</div>
-                    <div className='flex gap-2'>B. {_ch.answerB}</div>
-                    <div className='flex gap-2'>C. {_ch.answerC}</div>
-                    <div className='flex gap-2'>D. {_ch.answerD}</div>
-                </div>) :
-                null}
+        <div className="w-full my-4 p-4 shadow-md rounded-xl  font-normal cursor-pointer" onClick={() => toPage.push("/" + item.archive + "/" + item.id)}>
+            <div dangerouslySetInnerHTML={{ __html: item?.question }} className=' line-clamp-6'></div>
         </div>
     )
 }
@@ -73,11 +56,12 @@ export const ItemDetail = ({ item, nextQuestion }: Props) => {
 
     const toPage = useRouter()
     return (
-        <div className="w-full min-h-24 my-4 p-4 shadow-md rounded-xl  font-bold cursor-pointer">
-            <div dangerouslySetInnerHTML={{ __html: item.question }} className='text-title-red'></div>
+        <div className="w-full min-h-24 my-4 p-4 shadow-md rounded-xl  font-bold cursor-pointer bg-white">
+            <div dangerouslySetInnerHTML={{ __html: item.question }} className='font-normal'></div>
+            <div className="h-6"></div>
             {_choose ?
                 _choose.map((_ch, index) => <div key={index} className='font-normal mb-6' onClick={() => set_question(index)}>
-                    <div>{_ch.question}</div>
+                    <div className='font-bold'>{index + 1}. {_ch.question}</div>
                     <div className='flex gap-2' onClick={() => { set_answer("A") }}><input type='radio' defaultChecked={_qas[index] === "A"} key={_key}></input>A. {_ch.answerA}</div>
                     <div className='flex gap-2' onClick={() => { set_answer("B") }}><input type='radio' defaultChecked={_qas[index] === "B"} key={_key}></input>B. {_ch.answerB}</div>
                     <div className='flex gap-2' onClick={() => { set_answer("C") }}><input type='radio' defaultChecked={_qas[index] === "C"} key={_key}></input>C. {_ch.answerC}</div>

@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`scrbar-none`}
+        className={`scrbar-none bg-slate-50`}
       >
         <Header />
         {children}

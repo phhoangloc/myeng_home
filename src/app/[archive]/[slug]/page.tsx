@@ -10,32 +10,24 @@ const Page = () => {
     const archive = param.archive
     const slug = param.slug
     const [_item, set_item] = useState<QuestionType>()
-    const [_lastQuestion, set_lastQuestion] = useState<number>(0)
-    const getItem = async (archive: string, slug: string) => {
-        const result = await ApiItemUser({ position: "user", archive: "path", archivePlus: archive, id: Number(slug) })
-        if (result.success) {
-            set_item(result.data[0])
-        }
-    }
-    const getAllItem = async (archive: string) => {
+    const [_nextQuestion, set_NextQuestion] = useState<number>(0)
+    const getAllItem = async (archive: string, slug: string) => {
         const result = await ApiItemUser({ position: "user", archive: "path", archivePlus: archive })
         if (result.success) {
-            set_lastQuestion(result.data.length)
+            const data = result.data
+            set_item(data.filter((d: { id: number }) => d.id === Number(slug))[0])
+            set_NextQuestion(data[getRandomInteger(data.length - 1)].id)
         }
     }
+
     useEffect(() => {
-        getItem(archive, slug)
+        getAllItem(archive, slug)
     }, [archive, slug])
-
-    useEffect(() => {
-        getAllItem(archive)
-    }, [archive])
-
 
     return (
         _item ?
             <div className='max-w-xl m-auto'>
-                <ItemDetail item={_item} nextQuestion={_lastQuestion ? getRandomInteger(_lastQuestion) : _item.id} />
+                <ItemDetail item={_item} nextQuestion={_nextQuestion} />
             </div> : null
     )
 }

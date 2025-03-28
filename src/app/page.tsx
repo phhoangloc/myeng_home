@@ -38,7 +38,7 @@ export default function Home() {
       <div className="w-full max-w-lg m-auto flex flex-wrap justify-center gap-4">
         {
           toeicPath.map((p, index) =>
-            <div key={index} className="w-52 aspect-[2/3] shadow-md flex flex-col justify-center text-center rounded-xl text-title-red font-bold cursor-pointer" onClick={() => toPage.push("/" + p.name)}>
+            <div key={index} className="w-52 aspect-[1] shadow-md flex flex-col justify-center text-center rounded-xl text-title-red font-bold cursor-pointer bg-white" onClick={() => toPage.push("/" + p.name)}>
               PATH {index + 1}
             </div>)
         }

@@ -29,6 +29,7 @@ const Page = () => {
     const archive = params.archive
 
     const [_items, set_items] = useState<QuestionType[]>([])
+    const [_newItems, set_newItems] = useState<QuestionType[]>([])
     const getItem = async (archive: string) => {
         const result = await ApiItemUser({ position: "user", archive: "path", archivePlus: archive })
         if (result.success) {
@@ -39,18 +40,19 @@ const Page = () => {
         getItem(archive)
     }, [archive])
 
-    const randomArray = new Array(10).fill(0).map(() => getRandomInteger(_items.length));
-    console.log(randomArray)
-    const newArr = randomArray.map(value => {
-        const result = _items.filter(item => item.id === value)
-        return result
-    })
-    console.log(newArr)
+    useEffect(() => {
+        // const randomArray = _items.map(() => getRandomInteger(_items.length));
+        const randomArray = new Array(20).fill(0).map(() => _items[getRandomInteger(_items.length - 1)]);
+        if (_items.length) {
+            set_newItems(randomArray)
+        }
+    }, [_items])
+
     return (
         <div >
-            <div className='max-w-xl m-auto'>
+            <div className='max-w-lg m-auto'>
                 <div className='text-2xl text-center h-24 flex flex-col justify-center text-title-red font-bold'>{archive.toUpperCase()}</div>
-                {_items.map((item, index) => <ItemArchive item={item} key={index} />)}
+                {_newItems.length ? _newItems.map((item, index) => <ItemArchive item={item} key={index} />) : null}
             </div>
 
         </div>
