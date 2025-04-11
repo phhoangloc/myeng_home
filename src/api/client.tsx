@@ -2,6 +2,7 @@ import axios from "axios"
 
 export type BodyType = {
     archive: string,
+    archivePlus?: string
     id?: string,
     slug?: string,
     search?: string,
@@ -27,11 +28,11 @@ export const ApiSignup = async (body: { username: string, password: string, emai
     })
     return result.data
 }
-export const ApiItem = async ({ archive, search, id, slug, category, sort, skip, limit }: BodyType) => {
+export const ApiItem = async ({ archive, archivePlus, search, id, slug, category, sort, skip, limit }: BodyType) => {
     try {
         const result = await axios.get(process.env.api_url + "api/" +
             archive +
-            "?archive=" + archive +
+            "?archive=" + `${archivePlus ? archivePlus : archive}` +
             "&search=" + `${search ? search : ""}` +
             "&id=" + `${id ? id : ""}` +
             "&slug=" + `${slug ? slug : ""}` +

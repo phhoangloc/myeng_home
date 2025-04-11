@@ -11,6 +11,7 @@
     --container-2xl: 1600px;
 
     --vw-12: calc(100vw - 3rem);
+    --vw-40: calc(100vw - 10rem);
     --vw-72: calc(100vw - 18rem);
 
     --vh-12: calc(100vh - 3rem)
@@ -18,4 +19,59 @@
 
 .scrbar-none::-webkit-scrollbar {
     display: none;
+}
+
+
+.dangerous_box {
+    text-align: justify;
+
+}
+
+.dangerous_box h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.5;
+    margin-top: 12px
+}
+
+.dangerous_box h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-top: 12px
+}
+
+.dangerous_box h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 8px
+}
+
+.dangerous_box h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 8px
+}
+
+.dangerous_box h5 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 8px
+}
+
+.dangerous_box b,
+strong {
+    font-weight: 700 !important;
+}
+
+.dangerous_box p {
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+
+    @media (min-width:575px) {
+        font-size: 1rem;
+    }
 }
