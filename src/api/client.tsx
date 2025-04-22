@@ -11,6 +11,7 @@ export type BodyType = {
     limit?: number,
     sort?: string,
     update?: number,
+    censor?: boolean
 }
 
 export const ApiLogin = async (body: { username: string, password: string }) => {
@@ -28,7 +29,7 @@ export const ApiSignup = async (body: { username: string, password: string, emai
     })
     return result.data
 }
-export const ApiItem = async ({ archive, archivePlus, search, id, slug, category, sort, skip, limit }: BodyType) => {
+export const ApiItem = async ({ archive, archivePlus, search, id, slug, category, sort, skip, limit, censor }: BodyType) => {
     try {
         const result = await axios.get(process.env.api_url + "api/" +
             archive +
@@ -39,7 +40,8 @@ export const ApiItem = async ({ archive, archivePlus, search, id, slug, category
             "&category=" + `${category ? category : ""}` +
             "&skip=" + `${skip ? skip : ""}` +
             "&sort=" + `${sort ? sort : ""}` +
-            "&limit=" + `${limit ? limit : ""}`
+            "&limit=" + `${limit ? limit : ""}` +
+            "&censor=" + `${censor ? censor : ""}`
         )
         return result.data
     } catch (error) {

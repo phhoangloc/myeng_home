@@ -25,21 +25,18 @@ const Layout = ({ children }: Props) => {
     return (
 
         _currentUser.id ?
-            <div className='w-full bg-slate-100  flex flex-col'>
+            <div className='w-full bg-bgr  flex flex-col'>
                 <div className='flex w-max xl:w-full justify-between'>
                     <div className={`transition-all duration-200 rounded sticky h-screen top-0 ${_currentMenu ? "w-40" : "w-12"} lg:w-40`}>
                         <Sidebar />
                     </div>
 
-                    <div className='w-(--vw-12) lg:w-(--vw-40) xl:w-lg  py-2 pr-2'>
+                    <div className='w-(--vw-12) lg:w-(--vw-40)  py-2 pr-2'>
                         {children}
-                    </div>
-                    <div className='hidden xl:block w-40'>
-
                     </div>
                 </div>
             </div> :
-            <div className='w-full h-screen flex flex-col justify-center bg-slate-200'>
+            <div className='w-full h-screen flex flex-col justify-center bg-bgr'>
                 <LoginCard />
             </div>
     )

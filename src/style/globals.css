@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --color-title-red: #FF6F61;
+    --color-main: #064789;
+    --color-sub: #427aa1;
+    --color-bgr: #ebf2fa;
 
     --container-xs: 375px;
     --container-sm: 575px;
@@ -21,9 +23,13 @@
     display: none;
 }
 
-
 .dangerous_box {
     text-align: justify;
+
+}
+
+.dangerous_box img {
+    width: 100%;
 
 }
 
@@ -62,6 +68,7 @@
     margin-top: 8px
 }
 
+/* .dangerous_blog, */
 .dangerous_box b,
 strong {
     font-weight: 700 !important;
@@ -74,4 +81,83 @@ strong {
     @media (min-width:575px) {
         font-size: 1rem;
     }
+}
+
+.dangerous_box p em {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    text-align: center;
+    display: block;
+}
+
+.dangerous_blog {
+    text-align: justify;
+
+}
+
+.dangerous_blog img {
+    width: 100%;
+
+}
+
+.dangerous_blog h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.5;
+    margin-top: 12p;
+    color: #064789
+}
+
+.dangerous_blog h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-top: 12p;
+    color: #064789
+}
+
+.dangerous_blog h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 8px;
+    color: #064789
+}
+
+.dangerous_blog h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 8px;
+    color: #064789
+}
+
+.dangerous_blog h5 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 8px;
+    color: #064789
+}
+
+/* .dangerous_blog, */
+.dangerous_blog b,
+strong {
+    font-weight: 700 !important;
+}
+
+.dangerous_blog p {
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+
+    @media (min-width:575px) {
+        font-size: 1rem;
+    }
+}
+
+.dangerous_blog p em {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    text-align: center;
+    display: block;
 }

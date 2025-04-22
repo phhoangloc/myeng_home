@@ -39,40 +39,43 @@ export default function Home() {
   }
   const [_blogs, set_blogs] = useState<BlogType[]>([])
 
-  const getBlog = async (archive: string) => {
-    const result = await ApiItem({ archive })
+  const getBlog = async (archive: string, censor: boolean) => {
+    const result = await ApiItem({ archive, censor: censor })
+
     if (result.success) {
       set_blogs(result.data)
     }
   }
+
   useEffect(() => {
-    getBlog("blog")
+    getBlog("blog", true)
   }, [_refresh])
+
   const createBlog = async (position: string, archive: string, body: { content: string, slug: string }) => {
     const result = await ApiCreateItem({ position, archive }, body)
     if (result.success) {
+      set_detail("")
       set_refresh(n => n + 1)
     }
   }
 
-  console.log(_detail)
   return (
-    <div className=" w-full min-h-full flex flex-col gap-4">
+    <div className=" w-full min-h-full flex flex-col gap-4 max-w-lg m-auto">
       <div className="h-12 bg-white rounded">
       </div>
       <div>
         <div className="w-full min-h-72 bg-white rounded p-2 shadow">
           <TextAreaTool onChange={(v) => set_detail(v)} value={""} sx="border-none min-h-72 w-full dangerous_box" />
-          <div className="font-bold h-12 flex justify-between px-2 border-t border-slate-200">
-            <div className="flex flex-col justify-center">{currentUser.username}</div>
-            <Button onClick={() => createBlog(currentUser.position, "blog", body)} name="post" sx=" uppercase text-sm !bg-slate-500 !w-max !h-max px-4 py-1 block cursor-pointer my-auto" disable={_detail === "<p><br></p>" ? true : false}></Button>
+          <div className="font-bold h-12 flex justify-between px-2 border-t border-bgr">
+            <div className="flex flex-col justify-center text-main">{currentUser.username}</div>
+            <Button onClick={() => createBlog(currentUser.position, "blog", body)} name="post" sx=" uppercase text-sm !bg-main !w-max !h-max px-4 py-1 block cursor-pointer my-auto" disable={_detail === "<p><br></p>" ? true : false}></Button>
           </div>        </div>
       </div>
       <div className="h-12">
 
       </div>
       {
-        _blogs.map((blog, index) => <ArchiveCardBlog key={index} {...blog} />)
+        _blogs.length ? _blogs.map((blog, index) => <ArchiveCardBlog key={index} {...blog} />) : null
       }
     </div>
   );

@@ -173,10 +173,10 @@ export const TextAreaTool = (props: Props) => {
 
 
     return (
-        <div className={`relative border border-slate-200 px-2 ${props.sx ? props.sx : ""} `}>
+        <div className={`relative border border-bgr px-2 ${props.sx ? props.sx : ""} `}>
             <div className='sticky p-1  top-0 border-b border-inherit bg-white'>
                 <div className='relative'>
-                    <div className='flex flex-wrap relative'>
+                    <div className='flex flex-wrap relative text-main'>
                         {!props.tool ? <DividerSelect name={title} sx='w-24 z-[2]'
                             data={[
                                 { name: "h1", func: () => createBlockStyle(editorState, "header-one") },
@@ -196,17 +196,17 @@ export const TextAreaTool = (props: Props) => {
                         <LinkOffIcon className={`!w-12 !h-12 p-3 rounded cursor-pointer  `} onClick={() => removeLink()} />
                         <AddPhotoAlternateIcon className={`!w-12 !h-12 p-3 rounded cursor-pointer  `} onClick={() => setIsInputLinkImg(true)} />
                     </div>
-                    <div className={`flex transition-all duration-200 absolute shadow-md rounded cursor-pointer p-1 bg-lv-0 dark:bg-lv-18 ${isInputLink || isInputLinkImg ? "top-14 z-[1]" : "top-0 z-[-1] opacity-0"}`}>
+                    <div className={`flex transition-all duration-200 absolute shadow-md rounded cursor-pointer p-1 bg-white ${isInputLink || isInputLinkImg ? "top-14 z-[1]" : "top-0 z-[-1] opacity-0"}`}>
                         <input
-                            className='bg-inherit border rounded cursor-pointer border-lv-11'
+                            className='bg-inherit border rounded cursor-pointer border-bgr'
                             onChange={(e) => { isInputLink && setLink(e.target.value); isInputLinkImg && setLinkImg(e.target.value); }}
                             value={link || linkImg}
                             onFocus={(e) => {
                                 e.target.style.outline = 'none'
                             }}>
                         </input>
-                        <CloseIcon className={`!w-12 !h-12 p-3  bg-main rounded cursor-pointer `} onClick={() => { setIsInputLink(false), setIsInputLinkImg(false) }} />
-                        <CheckIcon className={`!w-12 !h-12 p-3  bg-main rounded cursor-pointer `} onClick={() => onCheck(link || linkImg)} />
+                        <CloseIcon className={`!w-12 !h-12 p-3  text-main rounded cursor-pointer `} onClick={() => { setIsInputLink(false), setIsInputLinkImg(false) }} />
+                        <CheckIcon className={`!w-12 !h-12 p-3  text-main rounded cursor-pointer `} onClick={() => onCheck(link || linkImg)} />
                     </div>
                 </div>
             </div>
@@ -257,8 +257,6 @@ export const TextArea = ({ onChange, name, value, disabled, sx, onFocus }: TextA
             <div className={`relative z-[1] overflow-auto scroll_none pt-5 min-h-11 px-2`} onClick={() => { inputRef.current.focus(); set_focus(true) }}>
                 <Editor ref={inputRef} editorState={editorState} onChange={(editorState) => setEditorState(editorState)} onBlur={() => set_focus(false)} onFocus={() => onFocus && onFocus()} />
             </div>
-            {/* <div className={`w-full h-full absolute z-0 border-b-2 top-0 left-0`}></div>
-            <div className={`w-full h-full absolute z-0 border-b-2 top-0 left-0 transition-all duration-300 border-lv-11 ${_focus || content !== "<p><br></p>" ? "scale-x-[100%]" : "scale-x-[0%]"}`} ></div> */}
         </div>
     )
 }

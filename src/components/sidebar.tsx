@@ -59,9 +59,9 @@ const Sidebar = () => {
     return (
         <div className='h-max'>
             {listMenu.map((menu, index) =>
-                <div key={index} className='h-12 flex flex-col justify-center overflow-hidden cursor-pointer' onClick={() => { toPage.push(menu.link) }}>
-                    <div className="flex">
-                        <div>
+                <div key={index} className='h-12 flex flex-col justify-center overflow-hidden cursor-pointer first:text-main first:font-bold' onClick={() => { toPage.push(menu.link) }} >
+                    <div className="flex ">
+                        <div className='text-main'>
                             {menu.icon}
                         </div>
                         <div className="flex flex-col justify-center">
